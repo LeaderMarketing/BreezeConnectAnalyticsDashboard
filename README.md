@@ -11,13 +11,14 @@ A high-fidelity reporting dashboard concept for BreezeConnect (Leader Computers'
 
 ## What's in the Demo
 
-| Page | What it shows |
-|---|---|
+| Page                   | What it shows                                                                                                                                                                     |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Executive Overview** | Revenue trend (18-month), KPI cards (MRR, active services, ARPU, churn rate), product mix bar chart, state share donut, top partners table, top plans, AM/state/product champions |
-| **Churn Analysis** | Churned accounts table with filters by period (1M / 3M / 6M), reason breakdown donut, revenue-at-risk KPIs, churn by product and state |
-| **AM Performance** | Account Manager rankings with quota attainment, new wins, revenue contribution, progress bars, and individual AM drill-down |
+| **Churn Analysis**     | Churned accounts table with filters by period (1M / 3M / 6M), reason breakdown donut, revenue-at-risk KPIs, churn by product and state                                            |
+| **AM Performance**     | Account Manager rankings with quota attainment, new wins, revenue contribution, progress bars, and individual AM drill-down                                                       |
 
 ### Key UI Features
+
 - PortaOne-style **collapsible left sidebar** (chevron toggle)
 - Interactive **tab bars, period switches, toggles**
 - Product-specific icons (SIP = phone, NBN = globe, Fibre = lightning, Teams = mic, SMS = chat)
@@ -26,6 +27,7 @@ A high-fidelity reporting dashboard concept for BreezeConnect (Leader Computers'
 - BreezeConnect branding (logo, colours, Inter typeface)
 
 ### Data Scope (Dummy)
+
 - **States:** NSW, VIC, QLD, WA, SA
 - **Products:** SIP Trunking, NBN, Fibre, Microsoft Teams Calling, SMS
 - **Account Managers:** 15 real AM names used with fictitious performance data
@@ -36,14 +38,14 @@ A high-fidelity reporting dashboard concept for BreezeConnect (Leader Computers'
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | React 19 + TypeScript |
-| Build tool | Vite 7 |
-| Charting | Recharts |
-| Icons | react-icons (Heroicons v2) |
-| Routing | react-router-dom (HashRouter) |
-| Hosting | GitHub Pages (gh-pages) |
+| Layer      | Technology                    |
+| ---------- | ----------------------------- |
+| Framework  | React 19 + TypeScript         |
+| Build tool | Vite 7                        |
+| Charting   | Recharts                      |
+| Icons      | react-icons (Heroicons v2)    |
+| Routing    | react-router-dom (HashRouter) |
+| Hosting    | GitHub Pages (gh-pages)       |
 
 No backend or database — all data lives in `src/data/mockData.ts`.
 
@@ -86,6 +88,7 @@ The site will be live at the GitHub Pages URL within 1–2 minutes.
 To transition this from a static prototype to a live, production dashboard pulling real data from PortaOne and internal systems, the following would be required:
 
 ### 1. Data Source / API Layer
+
 - **PortaOne API integration** — connect to the PortaOne billing platform REST API to pull live customer, service, billing, and CDR data.
 - **Backend service** (e.g. Node.js / Python / .NET) to act as a middleware layer that:
   - Authenticates with PortaOne
@@ -94,10 +97,12 @@ To transition this from a static prototype to a live, production dashboard pulli
 - **Database** (optional but recommended) — a lightweight data warehouse or cache (e.g. PostgreSQL, BigQuery, or even a scheduled JSON export) to avoid hitting PortaOne on every page load and to enable historical trend storage.
 
 ### 2. Authentication & Access Control
+
 - **SSO / login** — integrate with the company's identity provider (Azure AD, Google Workspace, etc.) so only authorised staff can access the dashboard.
 - **Role-based access** — e.g. AMs see only their own data, managers see everything.
 
 ### 3. Data Mapping
+
 - Map PortaOne entities (customers, accounts, products, i_customer, etc.) to the dashboard's concept of:
   - **Products** (SIP, NBN, Fibre, Teams, SMS)
   - **States** (derive from customer address or service location)
@@ -107,15 +112,18 @@ To transition this from a static prototype to a live, production dashboard pulli
 - Define **quota / target data** — where do AM targets live? (CRM, spreadsheet, or a new admin interface)
 
 ### 4. Scheduling & Refresh
+
 - Decide refresh cadence — real-time, hourly, daily?
 - Implement a **data pipeline** (cron job, Azure Function, AWS Lambda) that periodically pulls from PortaOne, transforms, and stores aggregated metrics.
 
 ### 5. Infrastructure
+
 - **Hosting** — move from GitHub Pages to a proper environment (Azure App Service, AWS, Vercel, internal server) that can serve both the frontend and the API.
 - **CI/CD** — automated build + deploy pipeline (GitHub Actions, Azure DevOps).
 - **Monitoring** — error tracking, uptime checks, log aggregation.
 
 ### 6. Additional Features (Future Scope)
+
 - Date range pickers with real historical data
 - Export to PDF / Excel
 - Drill-down to individual customer detail

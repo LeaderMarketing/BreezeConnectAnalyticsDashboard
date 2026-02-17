@@ -577,7 +577,7 @@ button {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -658,6 +658,56 @@ button {
 .chip.info {
   color: var(--color-primary);
   background: var(--color-primary-soft);
+}
+
+.chip.product-sip {
+  color: #0469f8;
+  background: #e8f0fe;
+}
+
+.chip.product-nbn {
+  color: #059669;
+  background: #d1fae5;
+}
+
+.chip.product-fibre {
+  color: #d97706;
+  background: #fef3c7;
+}
+
+.chip.product-teams {
+  color: #6d28d9;
+  background: #ede9fe;
+}
+
+.chip.product-sms {
+  color: #ec4899;
+  background: #fce7f3;
+}
+
+.chip.state-nsw {
+  color: #0469f8;
+  background: #e8f0fe;
+}
+
+.chip.state-vic {
+  color: #6d28d9;
+  background: #ede9fe;
+}
+
+.chip.state-qld {
+  color: #d97706;
+  background: #fef3c7;
+}
+
+.chip.state-wa {
+  color: #059669;
+  background: #d1fae5;
+}
+
+.chip.state-sa {
+  color: #dc2626;
+  background: #fee2e2;
 }
 
 .rank-badge {
@@ -747,6 +797,209 @@ button {
   height: 100%;
   border-radius: 3px;
   transition: width 0.4s;
+}
+
+/* ── AM Hover Card ────────────────────────────────── */
+.am-hover-trigger {
+  position: relative;
+  cursor: pointer;
+  color: var(--color-primary);
+  font-weight: 500;
+  transition: color 0.15s;
+}
+
+.am-hover-trigger:hover {
+  color: #0352c9;
+}
+
+.am-hover-card {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
+  z-index: 200;
+  width: 320px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.14), 0 2px 10px rgba(0, 0, 0, 0.06);
+  padding: 0;
+  overflow: hidden;
+  animation: amCardIn 0.18s ease-out;
+  pointer-events: auto;
+}
+
+.am-hover-card-top {
+  top: auto;
+  bottom: calc(100% + 8px);
+}
+
+@keyframes amCardIn {
+  from { opacity: 0; transform: translateY(6px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.am-hover-card-top {
+  animation-name: amCardInTop;
+}
+
+@keyframes amCardInTop {
+  from { opacity: 0; transform: translateY(-6px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Header */
+.am-hover-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px 12px;
+  background: linear-gradient(135deg, #f0f6ff 0%, #f8faff 100%);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.am-hover-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.am-hover-identity {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.am-hover-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.am-hover-state {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.am-hover-state-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+/* KPIs */
+.am-hover-kpis {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.am-hover-kpi {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-right: 1px solid var(--color-border);
+}
+
+.am-hover-kpi:last-child {
+  border-right: none;
+}
+
+.am-hover-kpi-label {
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.am-hover-kpi-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.am-hover-kpi-green {
+  color: #059669;
+}
+
+/* Product breakdown */
+.am-hover-products {
+  padding: 10px 16px 14px;
+}
+
+.am-hover-section-label {
+  display: block;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.am-hover-product-row {
+  display: grid;
+  grid-template-columns: 68px 1fr 70px 38px;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5px;
+}
+
+.am-hover-product-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.am-hover-product-bar-track {
+  height: 6px;
+  background: #eef3fb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.am-hover-product-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.am-hover-product-amount {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.am-hover-product-pct {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ── Scrollbar ────────────────────────────────────── */

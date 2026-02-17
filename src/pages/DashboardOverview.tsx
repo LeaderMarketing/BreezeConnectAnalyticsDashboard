@@ -14,6 +14,7 @@ import { RevenueTrendChart } from '../components/charts/RevenueTrendChart'
 import { StateShareChart } from '../components/charts/StateShareChart'
 import { Panel } from '../components/ui/Panel'
 import { ProductIcon } from '../components/ui/ProductIcon'
+import { AMHoverCard } from '../components/ui/AMHoverCard'
 import type { ReturnTypeDashboardData } from './types'
 import { formatCurrency, formatNumber, formatPercent } from '../utils/format'
 
@@ -26,6 +27,8 @@ type ChurnWindow = '1M' | '3M' | '6M'
 type PartnerTab = 'top20' | 'dormant'
 
 const rankClass = (i: number) => (i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '')
+const stateChipClass = (s: string) => `chip state-${s.toLowerCase()}`
+const productChipClass = (p: string) => `chip product-${p.toLowerCase()}`
 
 export const DashboardOverview = ({ dashboard }: Props) => {
   const [amTab, setAmTab] = useState<AMTab>('top10')
@@ -178,8 +181,8 @@ export const DashboardOverview = ({ dashboard }: Props) => {
                 {dashboard.topAMs.map((am, i) => (
                   <tr key={am.name}>
                     <td><span className={`rank-badge ${rankClass(i)}`}>{i + 1}</span></td>
-                    <td>{am.name}</td>
-                    <td><span className="chip info">{am.state}</span></td>
+                    <td><AMHoverCard name={am.name}>{am.name}</AMHoverCard></td>
+                    <td><span className={stateChipClass(am.state)}>{am.state}</span></td>
                     <td style={{ textAlign: 'right' }}>{formatCurrency(am.revenue)}</td>
                     <td style={{ textAlign: 'right' }}>{am.margin.toFixed(1)}%</td>
                     <td style={{ textAlign: 'right' }}><span className="trend-up">{formatPercent(am.growthYoY)}</span></td>
@@ -205,7 +208,7 @@ export const DashboardOverview = ({ dashboard }: Props) => {
                 {dashboard.growthAMs.map((am, i) => (
                   <tr key={am.name}>
                     <td><span className={`rank-badge ${rankClass(i)}`}>{i + 1}</span></td>
-                    <td>{am.name}</td>
+                    <td><AMHoverCard name={am.name}>{am.name}</AMHoverCard></td>
                     <td style={{ textAlign: 'right' }}><span className="trend-up">{formatPercent(am.growthLM)}</span></td>
                     <td style={{ textAlign: 'right' }}><span className="trend-up">{formatPercent(am.growth3M)}</span></td>
                     <td style={{ textAlign: 'right' }}><span className="trend-up">{formatPercent(am.growth6M)}</span></td>
@@ -228,8 +231,8 @@ export const DashboardOverview = ({ dashboard }: Props) => {
               <tbody>
                 {dashboard.stateChampions.map((c) => (
                   <tr key={c.state}>
-                    <td><span className="chip info">{c.state}</span></td>
-                    <td>{c.am}</td>
+                    <td><span className={stateChipClass(c.state)}>{c.state}</span></td>
+                    <td><AMHoverCard name={c.am}>{c.am}</AMHoverCard></td>
                     <td style={{ textAlign: 'right' }}>{formatCurrency(c.revenue)}</td>
                   </tr>
                 ))}
@@ -250,8 +253,8 @@ export const DashboardOverview = ({ dashboard }: Props) => {
               <tbody>
                 {dashboard.productChampions.map((c) => (
                   <tr key={c.product}>
-                    <td><span className="chip info">{c.product}</span></td>
-                    <td>{c.am}</td>
+                    <td><span className={productChipClass(c.product)}>{c.product}</span></td>
+                    <td><AMHoverCard name={c.am}>{c.am}</AMHoverCard></td>
                     <td style={{ textAlign: 'right' }}>{formatCurrency(c.revenue)}</td>
                     <td style={{ textAlign: 'right' }}>{c.margin.toFixed(1)}%</td>
                   </tr>
@@ -452,7 +455,7 @@ export const DashboardOverview = ({ dashboard }: Props) => {
               {dashboard.topPlansData.map((p) => (
                 <tr key={p.plan}>
                   <td>{p.plan}</td>
-                  <td><span className="chip info">{p.product}</span></td>
+                  <td><span className={productChipClass(p.product)}>{p.product}</span></td>
                   <td style={{ textAlign: 'right' }}>{formatNumber(p.users)}</td>
                   <td style={{ textAlign: 'right' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'flex-end' }}>

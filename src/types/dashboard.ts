@@ -61,3 +61,17 @@ export interface PlanData {
   users: number
   contribution: number
 }
+
+export interface AMProductBreakdown {
+  product: string
+  revenue: number
+}
+
+export interface AMProfile {
+  name: string
+  state: string
+  revenue: number
+  growthYoY: number
+  margin: number
+  products: AMProductBreakdown[]
+}

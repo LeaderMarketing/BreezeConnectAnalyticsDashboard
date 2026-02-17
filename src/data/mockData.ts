@@ -1,5 +1,6 @@
 import type {
   AMPerformance,
+  AMProfile,
   ChurnAccount,
   GlobalFilters,
   MonthlyRevenuePoint,
@@ -185,6 +186,59 @@ export const stateChampions = [
   { state: 'WA', am: 'Mark Marikkar', revenue: 301_000 },
   { state: 'SA', am: 'Scott Shariffdeen', revenue: 219_000 },
 ]
+
+/* ── AM Profiles (per-AM product revenue breakdown) ── */
+export const amProfiles: AMProfile[] = [
+  { name: 'Benson Yin', state: 'NSW', revenue: 420_000, growthYoY: 31.8, margin: 24.2, products: [
+    { product: 'SIP', revenue: 168_000 }, { product: 'NBN', revenue: 100_800 }, { product: 'Fibre', revenue: 71_400 }, { product: 'Teams', revenue: 54_600 }, { product: 'SMS', revenue: 25_200 },
+  ]},
+  { name: 'Mia Zhang', state: 'VIC', revenue: 401_000, growthYoY: 29.6, margin: 22.9, products: [
+    { product: 'SIP', revenue: 128_320 }, { product: 'NBN', revenue: 120_300 }, { product: 'Fibre', revenue: 68_170 }, { product: 'Teams', revenue: 52_130 }, { product: 'SMS', revenue: 32_080 },
+  ]},
+  { name: 'Harish CK', state: 'QLD', revenue: 364_000, growthYoY: 24.1, margin: 25.1, products: [
+    { product: 'SIP', revenue: 109_200 }, { product: 'Teams', revenue: 94_640 }, { product: 'NBN', revenue: 76_440 }, { product: 'Fibre', revenue: 54_600 }, { product: 'SMS', revenue: 29_120 },
+  ]},
+  { name: 'Mark Marikkar', state: 'WA', revenue: 301_000, growthYoY: 19.4, margin: 21.8, products: [
+    { product: 'Fibre', revenue: 102_340 }, { product: 'SIP', revenue: 78_260 }, { product: 'NBN', revenue: 60_200 }, { product: 'Teams', revenue: 39_130 }, { product: 'SMS', revenue: 21_070 },
+  ]},
+  { name: 'Raymond Wong', state: 'NSW', revenue: 286_000, growthYoY: 21.2, margin: 23.4, products: [
+    { product: 'SIP', revenue: 97_240 }, { product: 'SMS', revenue: 65_780 }, { product: 'NBN', revenue: 54_340 }, { product: 'Fibre', revenue: 40_040 }, { product: 'Teams', revenue: 28_600 },
+  ]},
+  { name: 'David Sloss', state: 'VIC', revenue: 272_000, growthYoY: 17.3, margin: 20.6, products: [
+    { product: 'NBN', revenue: 95_200 }, { product: 'SIP', revenue: 73_440 }, { product: 'Teams', revenue: 46_240 }, { product: 'Fibre', revenue: 35_360 }, { product: 'SMS', revenue: 21_760 },
+  ]},
+  { name: 'Andoni Tsokos', state: 'QLD', revenue: 246_000, growthYoY: 14.9, margin: 19.8, products: [
+    { product: 'SIP', revenue: 86_100 }, { product: 'NBN', revenue: 56_580 }, { product: 'Teams', revenue: 46_740 }, { product: 'Fibre', revenue: 34_440 }, { product: 'SMS', revenue: 22_140 },
+  ]},
+  { name: 'Scott Shariffdeen', state: 'SA', revenue: 219_000, growthYoY: 13.7, margin: 18.9, products: [
+    { product: 'SIP', revenue: 72_270 }, { product: 'NBN', revenue: 52_560 }, { product: 'Fibre', revenue: 39_420 }, { product: 'Teams', revenue: 32_850 }, { product: 'SMS', revenue: 21_900 },
+  ]},
+  { name: 'Andy Kris', state: 'WA', revenue: 204_000, growthYoY: 11.5, margin: 17.7, products: [
+    { product: 'SIP', revenue: 67_320 }, { product: 'NBN', revenue: 51_000 }, { product: 'Teams', revenue: 38_760 }, { product: 'Fibre', revenue: 28_560 }, { product: 'SMS', revenue: 18_360 },
+  ]},
+  { name: 'Grant Abbott', state: 'NSW', revenue: 192_000, growthYoY: 10.8, margin: 17.1, products: [
+    { product: 'SIP', revenue: 63_360 }, { product: 'NBN', revenue: 46_080 }, { product: 'Fibre', revenue: 34_560 }, { product: 'Teams', revenue: 28_800 }, { product: 'SMS', revenue: 19_200 },
+  ]},
+  { name: 'Chris Eustace', state: 'QLD', revenue: 186_000, growthYoY: 9.9, margin: 16.4, products: [
+    { product: 'SIP', revenue: 59_520 }, { product: 'NBN', revenue: 44_640 }, { product: 'Teams', revenue: 35_340 }, { product: 'Fibre', revenue: 27_900 }, { product: 'SMS', revenue: 18_600 },
+  ]},
+  { name: 'Victor Huang', state: 'VIC', revenue: 174_000, growthYoY: 9.2, margin: 16.0, products: [
+    { product: 'SIP', revenue: 55_680 }, { product: 'NBN', revenue: 41_760 }, { product: 'Teams', revenue: 33_060 }, { product: 'Fibre', revenue: 26_100 }, { product: 'SMS', revenue: 17_400 },
+  ]},
+  { name: 'Andy Nguyen', state: 'NSW', revenue: 168_000, growthYoY: 7.8, margin: 15.9, products: [
+    { product: 'SIP', revenue: 52_080 }, { product: 'NBN', revenue: 40_320 }, { product: 'Fibre', revenue: 30_240 }, { product: 'Teams', revenue: 28_560 }, { product: 'SMS', revenue: 16_800 },
+  ]},
+  { name: 'Nathan Puri', state: 'WA', revenue: 152_000, growthYoY: 7.1, margin: 15.6, products: [
+    { product: 'SIP', revenue: 48_640 }, { product: 'NBN', revenue: 36_480 }, { product: 'Teams', revenue: 28_880 }, { product: 'Fibre', revenue: 22_800 }, { product: 'SMS', revenue: 15_200 },
+  ]},
+  { name: 'Kevin Zhang', state: 'SA', revenue: 141_000, growthYoY: 6.2, margin: 15.4, products: [
+    { product: 'SIP', revenue: 43_710 }, { product: 'NBN', revenue: 33_840 }, { product: 'Teams', revenue: 26_790 }, { product: 'Fibre', revenue: 21_150 }, { product: 'SMS', revenue: 15_510 },
+  ]},
+]
+
+/* ── AM Profile Lookup ── */
+export const getAMProfile = (name: string): AMProfile | undefined =>
+  amProfiles.find((am) => am.name === name)
 
 /* ── Dashboard Data Selector ── */
 export const getDashboardData = (filters: GlobalFilters) => {

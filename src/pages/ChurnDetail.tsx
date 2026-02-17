@@ -31,6 +31,8 @@ type ChurnWindow = '1M' | '3M' | '6M'
 type BreakdownView = 'state' | 'product'
 
 const pieColors = ['#ef4444', '#f97316', '#f59e0b', '#84cc16', '#22c55e', '#06b6d4', '#8b5cf6']
+const stateChipClass = (s: string) => `chip state-${s.toLowerCase()}`
+const productChipClass = (p: string) => `chip product-${p.toLowerCase()}`
 
 export const ChurnDetail = ({ dashboard }: Props) => {
   const [window, setWindow] = useState<ChurnWindow>('1M')
@@ -162,7 +164,7 @@ export const ChurnDetail = ({ dashboard }: Props) => {
                 <tbody>
                   {dashboard.churnByState.map((s) => (
                     <tr key={s.state}>
-                      <td><span className="chip info">{s.state}</span></td>
+                      <td><span className={stateChipClass(s.state)}>{s.state}</span></td>
                       <td style={{ textAlign: 'right' }}>
                         <span className={s.churnRate > 7 ? 'trend-down' : ''}>{s.churnRate}%</span>
                       </td>
@@ -242,7 +244,7 @@ export const ChurnDetail = ({ dashboard }: Props) => {
                     <div style={{ fontWeight: 500 }}>{c.account}</div>
                     <div style={{ fontSize: 10, color: 'var(--color-text-muted)' }}>{c.partner}</div>
                   </td>
-                  <td><span className="chip info">{c.product}</span></td>
+                  <td><span className={productChipClass(c.product)}>{c.product}</span></td>
                   <td>{c.state}</td>
                   <td style={{ textAlign: 'right' }}>{formatCurrency(c.churnValue)}</td>
                   <td style={{ textAlign: 'right' }}>

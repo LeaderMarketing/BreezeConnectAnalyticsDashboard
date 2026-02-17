@@ -15,7 +15,7 @@ export const Panel = ({ className = '', title, subtitle, icon: Icon, children, r
       <div className="panel-header">
         <div>
           <h3 className="panel-title">
-            {Icon ? <Icon size={14} color="#0469f8" /> : null}
+            {Icon ? <Icon size={16} color="#0469f8" /> : null}
             {title}
           </h3>
           {subtitle ? <p className="panel-subtitle">{subtitle}</p> : null}

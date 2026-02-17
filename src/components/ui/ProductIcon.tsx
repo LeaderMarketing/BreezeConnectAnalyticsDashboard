@@ -16,10 +16,10 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; color?: strin
 
 const colorMap: Record<string, string> = {
   SIP: '#0469f8',
-  NBN: '#2b81fb',
-  Fibre: '#599cff',
-  Teams: '#8ab7ff',
-  SMS: 'rgb(248,163,66)',
+  NBN: '#059669',
+  Fibre: '#d97706',
+  Teams: '#6d28d9',
+  SMS: '#ec4899',
 }
 
 interface ProductIconProps {
