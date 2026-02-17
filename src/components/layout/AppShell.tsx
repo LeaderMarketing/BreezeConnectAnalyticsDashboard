@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import {
   HiOutlineChartBarSquare,
   HiOutlineArrowTrendingDown,
@@ -12,8 +12,9 @@ import {
   HiOutlineCurrencyDollar,
   HiOutlineQuestionMarkCircle,
   HiOutlineMagnifyingGlass,
-  HiOutlineBars3,
   HiOutlineChevronLeft,
+  HiOutlineArrowRightOnRectangle,
+  HiOutlineUserCircle,
 } from 'react-icons/hi2'
 
 interface AppShellProps {
@@ -33,6 +34,18 @@ export const AppShell = ({ children }: AppShellProps) => {
   const pageTitle = pageTitles[location.pathname] || 'Dashboard'
   const [photoError, setPhotoError] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const userMenuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   return (
     <div className={`app-shell ${sidebarOpen ? '' : 'sidebar-collapsed'}`}>
@@ -101,23 +114,59 @@ export const AppShell = ({ children }: AppShellProps) => {
 
       <div className="main-wrapper">
         <header className="top-header">
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <button className="sidebar-toggle-btn" onClick={() => setSidebarOpen((v) => !v)} title="Toggle sidebar">
-              <HiOutlineBars3 size={18} />
-            </button>
-            <h1 className="top-header-title">{pageTitle}</h1>
-          </div>
+          <h1 className="top-header-title">{pageTitle}</h1>
           <div className="top-header-right">
             <HiOutlineMagnifyingGlass size={18} />
             <HiOutlineQuestionMarkCircle size={18} />
-            <HiOutlineBell size={18} />
-            <div className="top-header-user">
-              {!photoError ? (
-                <img className="avatar" src={`${import.meta.env.BASE_URL}ben-photo.jpg`} alt="BK" onError={() => setPhotoError(true)} />
-              ) : (
-                <div className="avatar-fallback">BK</div>
+            <div className="header-icon-wrapper">
+              <HiOutlineBell size={18} />
+              <span className="notification-badge">3</span>
+            </div>
+            <div className="top-header-user" ref={userMenuRef}>
+              <button className="user-menu-trigger" onClick={() => setUserMenuOpen((v) => !v)}>
+                {!photoError ? (
+                  <img className="avatar" src={`${import.meta.env.BASE_URL}ben-photo.jpg`} alt="BK" onError={() => setPhotoError(true)} />
+                ) : (
+                  <div className="avatar-fallback">BK</div>
+                )}
+                <span>Ben Klason</span>
+              </button>
+
+              {userMenuOpen && (
+                <div className="user-dropdown">
+                  <div className="user-dropdown-header">
+                    {!photoError ? (
+                      <img className="user-dropdown-photo" src={`${import.meta.env.BASE_URL}ben-photo.jpg`} alt="BK" onError={() => setPhotoError(true)} />
+                    ) : (
+                      <div className="user-dropdown-photo-fallback">BK</div>
+                    )}
+                    <div className="user-dropdown-info">
+                      <span className="user-dropdown-name">Ben Klason</span>
+                      <span className="user-dropdown-email">ben.klason@breezeconnect.com.au</span>
+                      <span className="user-dropdown-role">General Manager</span>
+                    </div>
+                  </div>
+                  <div className="user-dropdown-divider" />
+                  <button className="user-dropdown-item">
+                    <HiOutlineUserCircle size={16} />
+                    Profile
+                  </button>
+                  <button className="user-dropdown-item">
+                    <HiOutlineCog6Tooth size={16} />
+                    Settings
+                  </button>
+                  <button className="user-dropdown-item">
+                    <HiOutlineBell size={16} />
+                    Notifications
+                    <span className="user-dropdown-badge">3</span>
+                  </button>
+                  <div className="user-dropdown-divider" />
+                  <button className="user-dropdown-item user-dropdown-item-danger">
+                    <HiOutlineArrowRightOnRectangle size={16} />
+                    Sign Out
+                  </button>
+                </div>
               )}
-              <span>Ben Klason</span>
             </div>
           </div>
         </header>
